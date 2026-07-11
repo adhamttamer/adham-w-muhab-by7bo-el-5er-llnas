@@ -1,0 +1,56 @@
+{
+  "info": {
+    "name": "E-Commerce API",
+    "_postman_id": "b1c9e6b0-1111-2222-3333-444455556666",
+    "description": "Full collection for the E-Commerce API (Categories, Products, Cart, Orders).",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Categories",
+      "item": [
+        { "name": "Get All", "request": { "method": "GET", "url": "{{baseUrl}}/api/categories" } },
+        { "name": "Get By Id", "request": { "method": "GET", "url": "{{baseUrl}}/api/categories/{{categoryId}}" } },
+        { "name": "Create", "request": { "method": "POST", "url": "{{baseUrl}}/api/categories", "header": [{"key":"Content-Type","value":"application/json"}], "body": { "mode": "raw", "raw": "{\n  \"name\": \"Gaming\",\n  \"description\": \"Consoles and games\"\n}" } } },
+        { "name": "Update", "request": { "method": "PATCH", "url": "{{baseUrl}}/api/categories/{{categoryId}}", "header": [{"key":"Content-Type","value":"application/json"}], "body": { "mode": "raw", "raw": "{\n  \"description\": \"Updated description\"\n}" } } },
+        { "name": "Delete", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/categories/{{categoryId}}" } }
+      ]
+    },
+    {
+      "name": "Products",
+      "item": [
+        { "name": "Get All", "request": { "method": "GET", "url": "{{baseUrl}}/api/products" } },
+        { "name": "Filter: category", "request": { "method": "GET", "url": "{{baseUrl}}/api/products?category={{categoryId}}" } },
+        { "name": "Filter: price range", "request": { "method": "GET", "url": "{{baseUrl}}/api/products?minPrice=20&maxPrice=200" } },
+        { "name": "Filter: inStock", "request": { "method": "GET", "url": "{{baseUrl}}/api/products?inStock=true" } },
+        { "name": "Filter: search", "request": { "method": "GET", "url": "{{baseUrl}}/api/products?search=phone" } },
+        { "name": "Get By Id", "request": { "method": "GET", "url": "{{baseUrl}}/api/products/{{productId}}" } },
+        { "name": "Create", "request": { "method": "POST", "url": "{{baseUrl}}/api/products", "header": [{"key":"Content-Type","value":"application/json"}], "body": { "mode": "raw", "raw": "{\n  \"name\": \"New Product\",\n  \"description\": \"Nice item\",\n  \"price\": 49.99,\n  \"stock\": 10,\n  \"category\": \"{{categoryId}}\",\n  \"images\": []\n}" } } },
+        { "name": "Update", "request": { "method": "PATCH", "url": "{{baseUrl}}/api/products/{{productId}}", "header": [{"key":"Content-Type","value":"application/json"}], "body": { "mode": "raw", "raw": "{\n  \"price\": 59.99,\n  \"stock\": 20\n}" } } },
+        { "name": "Delete", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/products/{{productId}}" } }
+      ]
+    },
+    {
+      "name": "Cart",
+      "item": [
+        { "name": "Get Cart", "request": { "method": "GET", "url": "{{baseUrl}}/api/cart" } },
+        { "name": "Add Item", "request": { "method": "POST", "url": "{{baseUrl}}/api/cart/items", "header": [{"key":"Content-Type","value":"application/json"}], "body": { "mode": "raw", "raw": "{\n  \"productId\": \"{{productId}}\",\n  \"quantity\": 2\n}" } } },
+        { "name": "Update Item", "request": { "method": "PATCH", "url": "{{baseUrl}}/api/cart/items/{{productId}}", "header": [{"key":"Content-Type","value":"application/json"}], "body": { "mode": "raw", "raw": "{\n  \"quantity\": 3\n}" } } },
+        { "name": "Remove Item", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/cart/items/{{productId}}" } },
+        { "name": "Clear Cart", "request": { "method": "DELETE", "url": "{{baseUrl}}/api/cart" } }
+      ]
+    },
+    {
+      "name": "Orders",
+      "item": [
+        { "name": "Create Order (Checkout)", "request": { "method": "POST", "url": "{{baseUrl}}/api/orders", "header": [{"key":"Content-Type","value":"application/json"}], "body": { "mode": "raw", "raw": "{\n  \"shippingAddress\": {\n    \"fullName\": \"John Doe\",\n    \"street\": \"123 Main St\",\n    \"city\": \"Cairo\",\n    \"country\": \"Egypt\",\n    \"zipCode\": \"11511\"\n  }\n}" } } },
+        { "name": "Get All", "request": { "method": "GET", "url": "{{baseUrl}}/api/orders" } },
+        { "name": "Get By Id", "request": { "method": "GET", "url": "{{baseUrl}}/api/orders/{{orderId}}" } },
+        { "name": "Update Status", "request": { "method": "PATCH", "url": "{{baseUrl}}/api/orders/{{orderId}}/status", "header": [{"key":"Content-Type","value":"application/json"}], "body": { "mode": "raw", "raw": "{\n  \"status\": \"confirmed\"\n}" } } }
+      ]
+    }
+  ],
+  "variable": [
+    { "key": "baseUrl", "value": "http://localhost:5000" }
+  ]
+}
