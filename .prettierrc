@@ -1,6 +1,15 @@
+<<<<<<< HEAD
 {
   "printWidth": 100,
   "semi": true,
   "singleQuote": false,
   "trailingComma": "all"
 }
+=======
+{
+  "printWidth": 100,
+  "semi": true,
+  "singleQuote": false,
+  "trailingComma": "all"
+}
+>>>>>>> 326c7b30074ad4851c95b904b91f608f6ef480a7
